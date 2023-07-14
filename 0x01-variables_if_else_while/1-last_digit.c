@@ -3,8 +3,8 @@
 #include <stdio.h>
 /**
  * main - main entry point
- * Return:0
-*/
+ * Return: 0
+ */
 int main(void)
 {
 	int n;
@@ -25,5 +25,6 @@ int main(void)
 		printf("Last digit of %d is %d and is 0\n", n, n % 10);
 	}
 
-	return(0);
+	return (0);
+
 }

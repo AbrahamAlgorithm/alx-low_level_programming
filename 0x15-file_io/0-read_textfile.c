@@ -8,37 +8,44 @@
 * Return: the actual number of letters or 0 if fails
 **/
 
-ssize_t read_textfile(const char *filename, size_t letters)
+int create_file(const char *filename, char *text_content)
+
 {
-	int f, length, i, res;
-	char *buffer;
 
-	if (filename == NULL)
-		return (0);
-	/* open */
+        int fd, w, len = 0;
 
-	f = open(filename, O_RDONLY);
 
-	if (f == -1)
-		return (0);
+        if (filename == NULL)
 
-	buffer = malloc(sizeof(char) * letters);
-	if (!buffer)
-		return (0);
+                return (-1);
 
-	read(f, buffer, letters);
-	buffer[letters] = '\0';
 
-	for (i = 0; buffer[i] != '\0'; i += 1)
-		length += 1;
+        if (text_content != NULL)
 
-	res = close(f);
-	if (res != 0)
-		exit(-1);
-	res = write(STDOUT_FILENO, buffer, length);
-	if (res != length)
-		return (0);
-	free(buffer);
+        {
 
-	return (length);
+                for (len = 0; text_content[len];)
+
+                        len++;
+
+        }
+
+
+        fd = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
+
+        w = write(fd, text_content, len);
+
+
+        if (fd == -1 || w == -1)
+
+                return (-1);
+
+
+        close(fd);
+
+
+        return (1);
+
 }
+
+

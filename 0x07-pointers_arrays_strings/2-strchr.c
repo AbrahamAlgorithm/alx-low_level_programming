@@ -1,38 +1,22 @@
 #include "main.h"
 
 /**
- * _strstr - Locates a substring.
- * @haystack: The string to be searched.
- * @needle: The substring to be located.
+ * _strchr - Locates a character in a string.
+ * @s: The string to be searched.
+ * @c: The character to be located.
  *
- * Return: If the substring is located - a pointer to the beginning
- *                                       of the located substring.
- * If the substring is not located - NULL.
+ * Return: If c is found - a pointer to the first occurence.
+ * If c is not found - NULL.
  */
 
-char *_strstr(char *haystack, char *needle)
+char *_strchr(char *s, char c)
 {
 	int index;
 
-	if (*needle == 0)
-		return (haystack);
-
-	while (*haystack)
+	for (index = 0; s[index] >= '\0'; index++)
 	{
-		index = 0;
-
-		if (haystack[index] == needle[index])
-		{
-			do {
-				if (needle[index + 1] == '\0')
-					return (haystack);
-
-				index++;
-
-			} while (haystack[index] == needle[index]);
-		}
-
-		haystack++;
+		if (s[index] == c)
+			return (s + index);
 	}
 
 	return ('\0');

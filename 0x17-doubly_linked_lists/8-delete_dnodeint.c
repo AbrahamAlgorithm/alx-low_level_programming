@@ -1,38 +1,33 @@
 #include "lists.h"
 
 /**
- * delete_dnodeint_at_index - delete at index in a DBL
- * @head: the head of the linked list
- * @index: the index
- * Return: 1 on succes and -1 else
+ * delete_dnodeint_at_index - deletes the node at index index of a list
+ * @head: head
+ * @index: index
+ * Return: 1 if it succeeded, -1 if it failed
  */
+
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
-	dlistint_t *new, *last, *back;
-	unsigned int n;
+	dlistint_t *current = *head;
+	unsigned int i = 0;
 
-	if (*head == NULL)
-	{
+	if (*head == NULL || head == NULL)
 		return (-1);
-	}
-	new = malloc(sizeof(dlistint_t));
-	if (new == NULL)
+
+	while (i < index)
 	{
-		return (-1);
+		if (current == NULL)
+			return (-1);
+		current = current->next;
+		i++;
 	}
-	last = *head;
-	while (last)
-	{
-		if (index == n)
-		{
-			back = last->prev;
-			new = last->next;
-			last->prev = back;
-			last->next = new;
-			return (1);
-		}
-		last = last->next;
-		n++;
-	}
-	return (-1);
+	if (current == *head)
+		*head = current->next;
+	if (current->next != NULL)
+		current->next->prev = current->prev;
+	if (current->prev != NULL)
+		current->prev->next = current->next;
+	free(current);
+	return (1);
 }

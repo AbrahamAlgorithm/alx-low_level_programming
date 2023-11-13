@@ -69,4 +69,5 @@ int mod(int a, int b)
 {
 	int modulo = (int) a % b;
 
-	return (modulo
+	return (modulo);
+}

@@ -1,1 +1,1 @@
-The repository for ALX low level programming
+This repository is for ALX low level programming

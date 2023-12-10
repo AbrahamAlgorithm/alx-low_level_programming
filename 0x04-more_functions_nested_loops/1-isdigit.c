@@ -3,7 +3,7 @@
 
 /**
  * _isdigit - entry point to test if it is a digit
- * @c: the value to test
+ * @c: the value to tests
  * Return: 1 if successful and 0 if not
  */
 
